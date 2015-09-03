@@ -20,3 +20,17 @@ Important Note:
 The variable used to track the count should not be accessible to the outside world
 
 */
+
+function getSpinner(){
+    var count = 0;
+    function increment(){
+        return ++count;
+    }
+    function decrement(){
+        return --count;
+    }
+    return {
+        up : increment,
+        down : decrement
+    }
+}
