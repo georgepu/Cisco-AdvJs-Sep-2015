@@ -34,3 +34,6 @@ function getSpinner(){
         down : decrement
     }
 }
+
+var spinner = getSpinner()
+
