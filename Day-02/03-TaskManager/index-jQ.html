@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Manager</title>
+    <!--
+    Use Cases
+    1. Add a task
+    2. Display the list of tasks
+    3. Toggle the completion status of the task
+    4. Remove completed tasks
+    5. Display stats
+    6. Persist tasks in the localStorage
+    -->
+    <style>
+        .completed {
+            color : red;
+            text-decoration: line-through;
+            font-style: italic;
+            font-weight: bold;
+        }
+        li{
+            cursor: pointer;
+        }
+        li:hover{
+           border : 2px solid gray;
+           padding: 4px;
+            border-radius: 4px;
+            background-color: lightgray;
+            margin-top: 5px;
+        }
+    </style>
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+    (function(){
+        //$(document).ready(init);
+        $(init);
+        function init(){
+            $("#btnAddTask").click(onBtnAddTaskClick);
+            $("#btnRemoveCompleted").click(onBtnRemoveCompletedClick);
+            $("#olTaskList > li").click(onTaskItemClick);
+        }
+        function onBtnRemoveCompletedClick(){
+            $("#olTaskList > li.completed").remove();
+        }
+        function onTaskItemClick(){
+            $(this).toggleClass("completed");
+        }
+        function onBtnAddTaskClick(){
+            var taskName = document.getElementById("txtTask").value;
+            //var newTaskItem = "<li>" +taskName + "</li>";
+            var newTaskItem = document.createElement("li");
+            newTaskItem.innerHTML = taskName;
+            newTaskItem.addEventListener("click", onTaskItemClick);
+            document.getElementById("olTaskList").appendChild(newTaskItem);
+        }
+    })();
+    </script>
+</head>
+<body>
+<h1>Task Manager</h1>
+<hr>
+<div class="content">
+    <label for="">Task :</label>
+    <input type="text" name="" id="txtTask">
+    <input type="button" value="Add Task" id="btnAddTask">
+    <input type="button" value="Remove Completed" id="btnRemoveCompleted">
+    <ol id="olTaskList">
+        <li>Explore Bangalore</li>
+        <li class="completed">Plan for vacation</li>
+        <li>Fix THAT bug</li>
+    </ol>
+</div>
+</body>
+</html>
