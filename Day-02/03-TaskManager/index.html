@@ -19,7 +19,50 @@
             font-style: italic;
             font-weight: bold;
         }
+        li{
+            cursor: pointer;
+        }
+        li:hover{
+           border : 2px solid gray;
+           padding: 4px;
+            border-radius: 4px;
+            background-color: lightgray;
+            margin-top: 5px;
+        }
     </style>
+    <script>
+    (function(){
+        window.addEventListener("DOMContentLoaded", init);
+        function init(){
+            document.getElementById("btnAddTask")
+                .addEventListener("click", onBtnAddTaskClick);
+
+            document.getElementById("btnRemoveCompleted")
+                .addEventListener("click", onBtnRemoveCompletedClick);
+            var taskItems = document.getElementById("olTaskList").children;
+            for(var i=0; i<taskItems.length; i++)
+                taskItems[i].addEventListener("click", onTaskItemClick);
+        }
+        function onBtnRemoveCompletedClick(){
+
+        }
+        function onTaskItemClick(){
+            if (this.classList.contains("completed")){
+                this.classList.remove("completed");
+            } else {
+                this.classList.add("completed");
+            }
+        }
+        function onBtnAddTaskClick(){
+            var taskName = document.getElementById("txtTask").value;
+            //var newTaskItem = "<li>" +taskName + "</li>";
+            var newTaskItem = document.createElement("li");
+            newTaskItem.innerHTML = taskName;
+            newTaskItem.addEventListener("click", onTaskItemClick);
+            document.getElementById("olTaskList").appendChild(newTaskItem);
+        }
+    })();
+    </script>
 </head>
 <body>
 <h1>Task Manager</h1>
