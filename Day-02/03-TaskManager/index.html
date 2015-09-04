@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Manager</title>
+    <!--
+    Use Cases
+    1. Add a task
+    2. Display the list of tasks
+    3. Toggle the completion status of the task
+    4. Remove completed tasks
+    5. Display stats
+    6. Persist tasks in the localStorage
+    -->
+    <style>
+        .completed {
+            color : red;
+            text-decoration: line-through;
+            font-style: italic;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>Task Manager</h1>
+<hr>
+<div class="content">
+    <label for="">Task :</label>
+    <input type="text" name="" id="txtTask">
+    <input type="button" value="Add Task" id="btnAddTask">
+    <input type="button" value="Remove Completed" id="btnRemoveCompleted">
+    <ol id="olTaskList">
+        <li>Explore Bangalore</li>
+        <li class="completed">Plan for vacation</li>
+        <li>Fix THAT bug</li>
+    </ol>
+</div>
+</body>
+</html>

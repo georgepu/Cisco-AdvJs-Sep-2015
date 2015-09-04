@@ -28,7 +28,6 @@ describe("Default list", function(){
     console.table(products);
 });
 
-
 describe("Sort", function(){
     describe("by default", function(){
         var sort = function sort(){
@@ -145,4 +144,38 @@ describe("Filter", function(){
             console.table(affordableProducts);
         });
     })
-})
+});
+
+describe("GroupBy", function(){
+    var groupBy = function groupBy(list, keySelector){
+        var result = {};
+        for(var i=0; i<list.length; i++){
+            var key = keySelector(list[i]);
+            result[key] = result[key] || [];
+            result[key].push(list[i]);
+        }
+        return result;
+    }
+
+    describe("by category", function(){
+        var categoryKeySelector = function(product) { return product.category;};
+        var productsByCategory = groupBy(products, categoryKeySelector);
+        for(var key in productsByCategory){
+            describe("Category - " + key, function(){
+                console.table(productsByCategory[key]);
+            });
+        }
+    });
+     describe("by cost", function(){
+        var costKeySelector = function(product) {
+            return product.cost > 50 ? "costly" : "affordable";
+        };
+        var productsByCost = groupBy(products, costKeySelector);
+        for(var key in productsByCost){
+            describe("Cost Category - " + key, function(){
+                console.table(productsByCost[key]);
+            });
+        }
+    });
+
+});
