@@ -11,6 +11,17 @@
     4. Remove completed tasks
     5. Display stats
     6. Persist tasks in the localStorage
+        window.localStorage
+            key/value store
+            key & value should be strings
+            apis
+                * setItem(key, value)
+                * getItem(key) //=> value
+                * removeItem(key)
+                * key(index) //=> key
+                * clear()
+                * length
+
     -->
     <style>
         .completed {
@@ -30,32 +41,7 @@
             margin-top: 5px;
         }
     </style>
-    <script src="jquery-1.11.3.js"></script>
-    <script>
-    (function(){
-        //$(document).ready(init);
-        $(init);
-        function init(){
-            $("#btnAddTask").click(onBtnAddTaskClick);
-            $("#btnRemoveCompleted").click(onBtnRemoveCompletedClick);
-            $("#olTaskList > li").click(onTaskItemClick);
-        }
-        function onBtnRemoveCompletedClick(){
-            $("#olTaskList > li.completed").remove();
-        }
-        function onTaskItemClick(){
-            $(this).toggleClass("completed");
-        }
-        function onBtnAddTaskClick(){
-            var taskName = document.getElementById("txtTask").value;
-            //var newTaskItem = "<li>" +taskName + "</li>";
-            var newTaskItem = document.createElement("li");
-            newTaskItem.innerHTML = taskName;
-            newTaskItem.addEventListener("click", onTaskItemClick);
-            document.getElementById("olTaskList").appendChild(newTaskItem);
-        }
-    })();
-    </script>
+    <script src="require.js" data-main="taskManager.js"></script>
 </head>
 <body>
 <h1>Task Manager</h1>
@@ -66,9 +52,7 @@
     <input type="button" value="Add Task" id="btnAddTask">
     <input type="button" value="Remove Completed" id="btnRemoveCompleted">
     <ol id="olTaskList">
-        <li>Explore Bangalore</li>
-        <li class="completed">Plan for vacation</li>
-        <li>Fix THAT bug</li>
+
     </ol>
 </div>
 </body>
